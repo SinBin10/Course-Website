@@ -1,5 +1,6 @@
 const express = require("express");
 const router = require("./router/auth-router");
+const connectDB = require("./utils/db");
 
 const app = express();
 
@@ -12,6 +13,9 @@ app.use(express.json());
 app.use("/api", router);
 
 const PORT = 3000;
-app.listen(PORT, () => {
-  console.log("Server is running fine");
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("Server is running fine");
+  });
 });
