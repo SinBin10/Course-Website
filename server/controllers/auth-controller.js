@@ -1,3 +1,5 @@
+const User = require("../models/user-model");
+
 /*so basically things go like this 
 in the main Server.js file the router are defined using router as a middleware 
 it defines which route to go based on the url and what action is performed when 
@@ -15,7 +17,7 @@ the server might crash so we need to handle the errors properly*/
 
 const home = async (req, res) => {
   try {
-    res.send("this reponse is for the homepage using router and controller");
+    res.send("home page working fine..");
   } catch (err) {
     res.status(500).send({ msg: "page not found" });
   }
@@ -23,7 +25,19 @@ const home = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    res.send("this is the register page from router and controllers");
+    const { username, email, phone, password } = req.body;
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).send({ msg: "user already exists" });
+    }
+    const createdUser = await User.create({
+      username,
+      email,
+      phone,
+      password,
+    });
+    console.log(createdUser);
+    res.send(createdUser);
   } catch (err) {
     res.status(400).send({ msg: "some error has occured" });
   }
