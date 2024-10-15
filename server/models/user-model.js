@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -44,6 +45,19 @@ userSchema.pre("save", async function (next) {
   user.password = hashedPassword;
   next();
 });
+
+//why jsonwebtokens in this model file like hashing logic  ?
+//as it is related to authorization like hashing
+
+//the method below generates a function called generateToken for
+//the schema and is accessible for individual documents
+userSchema.methods.generateToken = async function () {
+  return jwt.sign(
+    { userId: this._id.toString(), email: this.email, isAdmin: this.isAdmin },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: "30d" }
+  );
+};
 
 const User = mongoose.model("User", userSchema);
 
