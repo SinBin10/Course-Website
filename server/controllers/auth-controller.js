@@ -1,4 +1,5 @@
 const User = require("../models/user-model");
+const bcryptjs = require("bcryptjs");
 
 /*so basically things go like this 
 in the main Server.js file the router are defined using router as a middleware 
@@ -46,4 +47,26 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { home, register };
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  const userExists = await User.findOne({ email });
+  if (!userExists) {
+    return res.status(400).send({ msg: "Invalid credential" });
+  }
+  bcryptjs.compare(
+    password,
+    userExists.password,
+    async (err, checkPassword) => {
+      if (!checkPassword) {
+        return res.status(400).send({ msg: "Invalid credential" });
+      }
+      return res.status(200).send({
+        msg: "user logged in",
+        token: await userExists.generateToken(),
+        userId: userExists._id.toString(),
+      });
+    }
+  );
+};
+
+module.exports = { home, register, login };

@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const { home, register } = require("../controllers/auth-controller");
+const { home, register, login } = require("../controllers/auth-controller");
 
 router.route("/").get(home);
 
@@ -11,5 +11,6 @@ router.route("/").get(home);
 //to make a whole different separate routing logic for the post request,etc.
 
 router.route("/register").post(register);
+router.route("/login").post(login);
 
 module.exports = router;
