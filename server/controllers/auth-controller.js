@@ -42,25 +42,30 @@ const register = async (req, res) => {
       userId: createdUser._id.toString(),
     });
   } catch (err) {
-    res.status(400).send({ msg: "some error has occured" });
+    // res.status(400).send({ msg: "some error has occured" });
+    next(err);
   }
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const userExists = await User.findOne({ email });
-  if (!userExists) {
-    return res.status(400).send({ msg: "Invalid credential" });
-  }
-  const check = await userExists.checkPassword(password);
-  if (check) {
-    res.status(200).send({
-      msg: "user logged in",
-      token: await userExists.generateToken(),
-      userId: userExists._id.toString(),
-    });
-  } else {
-    res.status(401).send({ msg: "Invalid credential" });
+  try {
+    const { email, password } = req.body;
+    const userExists = await User.findOne({ email });
+    if (!userExists) {
+      return res.status(400).send({ msg: "Invalid credential" });
+    }
+    const check = await userExists.checkPassword(password);
+    if (check) {
+      res.status(200).send({
+        msg: "user logged in",
+        token: await userExists.generateToken(),
+        userId: userExists._id.toString(),
+      });
+    } else {
+      res.status(401).send({ msg: "Invalid credential" });
+    }
+  } catch (err) {
+    next(err);
   }
 };
 
