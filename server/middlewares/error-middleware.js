@@ -10,9 +10,9 @@
 const errorMiddleware = (err, req, res, next) => {
   //All the three variables can take values sent by a particular error, if not they can
   //take the default value as mentioned below.
-  const status = err.status | 500;
-  const message = err.message | "Backend Error";
-  const extraDetails = err.extraDetails | "Something went wrong";
+  const status = err.status || 500;
+  const message = err.message || "Backend Error";
+  const extraDetails = err.extraDetails || "Something went wrong";
 
   return res.status(status).json({ message, extraDetails });
 };
