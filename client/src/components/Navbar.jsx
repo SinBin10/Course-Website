@@ -1,19 +1,35 @@
+import { NavLink } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <>
-      <div>
-        <div>LearnWeb</div>
-        <div>
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Services</li>
-            <li>Login</li>
-            <li>Signup</li>
-          </ul>
+      <header className="text-purple-600">
+        <div className="logo">
+          <NavLink to="/">LearnWeb</NavLink>
         </div>
-      </div>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/about">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact">Contact</NavLink>
+            </li>
+            <li>
+              <NavLink to="/service">Services</NavLink>
+            </li>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Register</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </header>
     </>
   );
 };
