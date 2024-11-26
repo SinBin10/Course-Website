@@ -15,6 +15,10 @@ const Register = () => {
       [name]: e.target.value,
     });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(input);
+  };
   return (
     <div className="flex text-white mx-52 gap-40">
       <div className="w-[46%]">
@@ -25,7 +29,10 @@ const Register = () => {
       </div>
       <div>
         <h1 className="text-5xl font-bold my-4">Registration Form</h1>
-        <form action="submit" className="flex flex-col gap-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          {/* this name attribute in the input tag should have the
+           value same as it has been written in the model file
+            .... I wonder why .... */}
           <div>
             <label htmlFor="username">Username: </label>
             <input
