@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <>
+    <div className="bg-black min-h-screen">
       {/* BrowserRouter takes the default path of the browser */}
       <BrowserRouter>
         <Navbar />
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 };
 
