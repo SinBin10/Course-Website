@@ -33,6 +33,27 @@ const Home = () => {
             />
           </div>
         </div>
+        <div className="bg-white flex justify-around mx-48 py-8 my-6 rounded-xl">
+          <div className="text-black text-center">
+            <span className="text-4xl font-medium">50+</span> <br />
+            Registered Companies
+          </div>
+          <div className="border-r-2 border-r-black"></div>
+          <div className="text-black text-center">
+            <span className="text-4xl font-medium">10,000+</span> <br />
+            Happy Clients
+          </div>
+          <div className="border-r-2 border-r-black"></div>
+          <div className="text-black text-center">
+            <span className="text-4xl font-medium">500+</span> <br />
+            Well Known Developers
+          </div>
+          <div className="border-r-2 border-r-black"></div>
+          <div className="text-black text-center">
+            <span className="text-4xl font-medium">24/7</span> <br />
+            Service
+          </div>
+        </div>
       </section>
     </main>
   );
