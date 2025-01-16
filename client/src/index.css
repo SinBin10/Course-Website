@@ -2,24 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    /* color-scheme: light dark; */
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* color-scheme: light dark; */
+}
 
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
 
-  body {
-    font-family: "Urbanist", sans-serif;
-    background-color: black;
-  }
+body {
+  font-family: "Urbanist", sans-serif;
+  background-color: black;
 }
